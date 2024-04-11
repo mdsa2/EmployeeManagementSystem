@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<ngfdfg.Models.Entities.Employee>
+
+
+<div class="container">
+    <div class="row mb-3">
+        <div class="col"></div>
+        >
+        <div class="col-auto d-flex justify-content-end">
+            <a class="btn btn-primary" asp-controller="Employee" asp-action="Add">Add New Employee</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var employee in Model)
+                    {
+                        <tr>
+                            <td>@employee.Id</td>
+                            <td>@employee.Name</td>
+                            <td>@employee.Department</td>
+                            <td>@employee.Description</td>
+                            <td>
+                                <a class="btn btn-primary" asp-controller="Employee" asp-action="Edit" asp-route-id="@employee.Id">Edit</a>
+                            </td>
+
+                            <td>
+                                <form method="post" asp-controller="Employee" asp-action="Delete">
+                                    <input type="hidden" name="id" value="@employee.Id" />
+                                    <button type="submit" class="btn btn-danger ms-3">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
